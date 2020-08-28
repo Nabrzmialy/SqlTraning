@@ -3,6 +3,16 @@ GO
 
 -- Correct table declarations:
 -- a) Add missing constraints
+SELECT SUBSTRING('92022623435', 5, 2) + '-' + SUBSTRING('92022623435', 3, 2)  + '-' + SUBSTRING('92022623435', 1, 2)
+select (TRY_CONVERT(DateTime, '26-02-50', 5))
+select TRY_CONVERT(DateTime, '34-02-50', 5) 
+
+DECLARE @test Datetime = '1982-12-15 19:29:40.000'
+SELECT (DAY(@test))
+SELECT (MONTH(@test))
+SELECT (YEAR(@test))
+SELECT RIGHT((CAST( (YEAR(@test)) AS NVARCHAR(4))), 2)
+SELECT (YEAR(GETDATE()) - YEAR(@test))
 
 CREATE TABLE [3.3].[Country](
 	[CountryId] int NOT NULL,
