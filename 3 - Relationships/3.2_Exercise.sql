@@ -28,6 +28,17 @@ CREATE TABLE [3.2].[Country](
 	[RowCreationDate] int NULL FOREIGN KEY
 )
 
+BEGIN
+	CREATE TABLE [3.2].[AdultPeople](
+		[AddressId] [] NOT NULL,
+		[PersonId] [ NOT NULL,
+		[CityId] [] NOT NULL,
+		[CountryId] (2) NOT NULL,
+		[AddressLine1] (100) NULL,
+		[AddressLine2] nvarchar(100) NULL,
+		[RowCreationDate]  NOT NULL
+	)
+END
 
 CREATE TABLE [3.2].[Addresses](
 	[AddressId] [int] NOT NULL,
@@ -39,17 +50,7 @@ CREATE TABLE [3.2].[Addresses](
 	[RowCreationDate] datetime2 NOT NULL
 )
 
-BEGIN
-	CREATE TABLE [3.2].[Addresses](
-		[AddressId] [int] NOT NULL,
-		[PersonId] [int] NOT NULL,
-		[CityId] [int] NOT NULL,
-		[CountryId] nvarchar(2) NOT NULL,
-		[AddressLine1] nvarchar(100) NULL,
-		[AddressLine2] nvarchar(100) NULL,
-		[RowCreationDate] datetime2 NOT NULL
-	)
-END
+
 -- 2 --
 
 BEGIN -- INSERTS: --
