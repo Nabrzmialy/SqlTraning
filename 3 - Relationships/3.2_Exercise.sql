@@ -30,12 +30,12 @@ CREATE TABLE [3.2].[Country](
 
 BEGIN
 	CREATE TABLE [3.2].[AdultPeople](
-		[AddressId] [] NOT NULL,
-		[PersonId] [ NOT NULL,
-		[CityId] [] NOT NULL,
-		[CountryId] (2) NOT NULL,
-		[AddressLine1] (100) NULL,
-		[AddressLine2] nvarchar(100) NULL,
+		[PersonId]  [] NOT NULL,
+		[Name] [ NOT NULL,
+		[Surname] [] NOT NULL,
+		[DateOfBirth] (2) NOT NULL,
+		[IdentityNumber] (100) NULL,
+		[NationalityId] nvarchar(100) NULL,
 		[RowCreationDate]  NOT NULL
 	)
 END
