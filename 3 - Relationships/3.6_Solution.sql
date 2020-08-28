@@ -26,5 +26,6 @@ END
 
 select * from [3.6].[Addresses] 
 INSERT INTO [3.6].[Addresses] ([PersonId],[CityId],[AddressLine1],[AddressLine2],[RowCreationDate])
-VALUES(16, 5, 'addressLine1','addressLine2',GETDATE())
+VALUES(16, 152, 'addressLine1','addressLine2',GETDATE())
+select * from [3.6].City
 
