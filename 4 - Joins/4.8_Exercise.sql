@@ -1,7 +1,8 @@
 ﻿/* 
-	Show all distinct products for which there was payment made with credit card containing number 69
+	Show all distinct products for which there was payment 
+	made with credit card containing number 69
 
-	Tables to use: 
+	Tables to use:
 	a)	sales.SalesOrderHeader
 	b)  sales.SalesOrderDetail
 	c)  Production.Product
