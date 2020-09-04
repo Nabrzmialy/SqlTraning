@@ -1,0 +1,167 @@
+using System;
+using System.Data;
+using System.Data.SqlClient;
+using System.Text;
+using System.Transactions;
+using Xunit;
+
+namespace SqlTests
+{
+	public class Program
+    {
+        static public void InsertRow(SqlConnection connection, Sale sale)
+        {
+            SqlParameter parameter;
+
+            using (var command = new SqlCommand())
+            {
+                command.Connection = connection;
+                command.CommandType = CommandType.Text;
+                command.CommandText = @"  
+                INSERT INTO [dbo].[Sales]
+                       ([Region]
+                       ,[SumUp]
+                       ,[Country]
+                       ,[ItemType]
+                       ,[OrderPriority]
+                       ,[OrderDate]
+                       ,[OrderID])
+                 VALUES
+                       (@Region
+                       ,@SumUp
+                       ,@Country
+                       ,@ItemType
+                       ,@OrderPriority
+                       ,@OrderDate
+                       ,@OrderId)";
+
+                parameter = new SqlParameter("@Region", SqlDbType.VarChar, 50);
+                parameter.Value = sale.Region;
+                command.Parameters.Add(parameter);
+
+                parameter = new SqlParameter("@SumUp", SqlDbType.VarChar, 200);
+                parameter.Value = sale.SumUp;
+                command.Parameters.Add(parameter);
+
+                parameter = new SqlParameter("@Country", SqlDbType.VarChar, 50);
+                parameter.Value = sale.Country;
+                command.Parameters.Add(parameter);
+
+                parameter = new SqlParameter("@ItemType", SqlDbType.VarChar, 50);
+                parameter.Value = sale.ItemType;
+                command.Parameters.Add(parameter);
+
+                parameter = new SqlParameter("@OrderPriority", SqlDbType.VarChar,50);
+                parameter.Value = sale.OrderPriority;
+                command.Parameters.Add(parameter);
+
+                parameter = new SqlParameter("@OrderDate", SqlDbType.DateTime);
+                parameter.Value = sale.OrderDate;
+                command.Parameters.Add(parameter);
+
+                parameter = new SqlParameter("@OrderId", SqlDbType.Int);
+                parameter.Value = sale.OrderID;
+                command.Parameters.Add(parameter);
+
+                command.ExecuteNonQuery();
+            }
+        }
+
+        [Theory]
+        [InlineData("ShortName",1)]
+        [InlineData("ShortName34534f3", 2)]
+        [InlineData("ShortNamef23f23f23", 3)]
+        [InlineData("ShortName23r23f23f2f23f", 4)]
+        [InlineData("ShortName2f23f23f23f23f23f23f23f", 5)]
+        [InlineData("ShortNamef23f23f23", 6)]
+        [InlineData("ShortNa44353f23f23", 7)]
+        [InlineData("Shortff233f2f23f23", 8)]
+        [InlineData("Shornnvbnvbnb23f23", 9)]
+        [InlineData("Short34g34g34f23f23", 10)]
+        [InlineData("Shortvvvvfdvdfv", 11)]
+        [InlineData("ShortNam34faaa3f23", 12)]
+        public void SaveDataToDatabase(string itemType, int orderId)
+        {
+            using (TransactionScope st = new TransactionScope())
+            {
+                var objectToInsert = new Sale()
+                {
+                    Country = "Poland",
+                    ItemType = itemType,
+                    OrderDate = DateTime.Now,
+                    OrderID = orderId,
+                    OrderPriority = "M",
+                    Region = "Europe",
+                    SumUp = "Whatever"
+                };
+                using (var connection = new SqlConnection("Data Source=.;Initial Catalog=AdventureWorks2012;Integrated Security=True"))
+                {
+                    connection.Open();
+                    InsertRow(connection, objectToInsert);
+                }
+
+                Sale readRow;
+                using (var connection = new SqlConnection("Data Source=.;Initial Catalog=AdventureWorks2012;Integrated Security=True"))
+                {
+                    connection.Open();
+                    readRow = ReadRow(connection, orderId);
+                }
+
+                Assert.Equal(objectToInsert.Country, readRow.Country);
+                Assert.Equal(objectToInsert.ItemType, readRow.ItemType);
+                Assert.Equal(objectToInsert.OrderDate.ToString("yyyy-MM-dd HH:mm:ss.fff"), 
+                    readRow.OrderDate.ToString("yyyy-MM-dd HH:mm:ss.fff"));
+                Assert.Equal(objectToInsert.OrderID, readRow.OrderID);
+                Assert.Equal(objectToInsert.OrderPriority, readRow.OrderPriority);
+                Assert.Equal(objectToInsert.Region, readRow.Region);
+                Assert.Equal(objectToInsert.SumUp, readRow.SumUp);
+
+                st.Dispose();
+            }
+            
+        }
+
+        private Sale ReadRow(SqlConnection connection, int orderId)
+        {
+            Sale result = new Sale();
+            
+            SqlCommand myCMD 
+                = new SqlCommand(@"SELECT TOP (1) 
+                     [Region]
+                    ,[SumUp]
+                    ,[Country]
+                    ,[ItemType]
+                    ,[OrderPriority]
+                    ,[OrderDate]
+                    ,[OrderID] FROM [AdventureWorks2012].[dbo].[Sales]
+                    WHERE OrderId = " + orderId, connection);
+            SqlDataReader myReader = myCMD.ExecuteReader();
+            myReader.Read();
+            do
+            {
+                result.Region = (string)myReader["Region"];
+                result.SumUp = (string)myReader["SumUp"];
+                result.Country = (string)myReader["Country"];
+                result.ItemType = (string)myReader["ItemType"];
+                result.OrderPriority = (string)myReader["OrderPriority"];
+                result.OrderDate = (DateTime)myReader["OrderDate"];
+                result.OrderID = (long)myReader["OrderID"];
+            }
+            while (myReader.NextResult());
+            myReader.Close();
+
+            return result;
+        }
+
+        public class Sale
+        {
+            public string Region { get; set; }
+            public string SumUp { get; set; }
+            public string Country { get; set; }
+            public string ItemType { get; set; }
+            public string OrderPriority { get; set; }
+            public DateTime OrderDate { get; set; }
+            public long OrderID { get; set; }
+        }
+    }
+}
