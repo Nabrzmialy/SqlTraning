@@ -22,9 +22,29 @@ CREATE TABLE [dbo].[Sales](
 SELECT * FROM Sales
 INSERT INTO Sales 
 VALUES ('Europe', 'Whatever', 'Poland', 'ShortName23', 'M', '2020-09-01 12:18:42.120', 69)
+INSERT INTO Sales 
+VALUES ('Europe', 'Whatever', 'Poland', 'ShortName23', 'M', '2020-09-01 12:18:42.120', 69)
+INSERT INTO Sales 
+VALUES ('Europe', 'Whatever', 'Poland', 'ShortName23', 'M', '2020-09-01 12:18:42.120', 69)
+INSERT INTO Sales 
+VALUES ('Europe', 'Whatever', 'Poland', 'ShortName23', 'M', '2020-09-01 12:18:42.120', 69)
+INSERT INTO Sales 
+VALUES ('Europe', 'Whatever', 'Poland', 'ShortName23', 'M', '2020-09-01 12:18:42.120', 69)
+INSERT INTO Sales 
+VALUES ('Europe', 'Whatever', 'Poland', 'ShortName23', 'M', '2020-09-01 12:18:42.120', 69)
+INSERT INTO Sales 
+VALUES ('Europe', 'Whatever', 'Poland', 'ShortName23', 'M', '2020-09-01 12:18:42.120', 69)
+INSERT INTO Sales 
+VALUES ('Europe', 'Whatever', 'Poland', 'ShortName23', 'M', '2020-09-01 12:18:42.120', 69)
+checkpoint
 
-CHECKPOINT
+TRUNCATE TABLE dbo.Sales
+DELETE FROM dbo.Sales
 
+select * from dbo.Sales
+BEGIN TRAN
+	TRUNCATE TABLE dbo.Sales
+COMMIT TRAN
 select
 	[Current LSN], [Description], [Operation], [Transaction ID], [Page ID], [log record Length],
 	convert(int, convert(varbinary, '0x' + SUBSTRING([Page ID], 6, 8), 1)) as [Page ID], 
@@ -36,8 +56,13 @@ select
 from fn_dblog(null, null)
 
 --- 
+0x530068006F00720074004E0061006D00650032003300
 
-DECLARE @SupName nvarchar(255) = 'EXTREMELY IMPORTANT SUPPLIER!!!'
+DECLARE @SupName7 varbinary(max) = 0x5700680061007400650076006500720050006F006C0061006E006400530068006F00720074004E0061006D006500320033004D00000101000C0000C9381C1D00000102000402030004
+(SELECT cast(@SupName7 as [nvarchar](255)))
+
+
+DECLARE @SupName nvarchar(255) = 'Whatever'
 DECLARE @SupName2 varbinary(max) = (SELECT cast(@SupName as varbinary))
 select @SupName2
 select 

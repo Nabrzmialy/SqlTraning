@@ -9,6 +9,8 @@ CREATE TABLE dbo.[TextPesel](
 	[Name] nvarchar(100) NOT NULL,
 )
 
+select * from dbo.[IntPesel]
+select * from dbo.[TextPesel]
 -- Insert pesels to both tables:
 45011117466
 45022176296
