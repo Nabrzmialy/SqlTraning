@@ -1,0 +1,1 @@
+﻿-- Create query as on the screen
