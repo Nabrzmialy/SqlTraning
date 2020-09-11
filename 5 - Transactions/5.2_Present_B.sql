@@ -27,12 +27,15 @@ FROM dbo.TestIsolationLevels
 	SET TRANSACTION ISOLATION LEVEL READ COMMITTED 
 
 	BEGIN TRAN
+	 -- 2 sek
 		SELECT  EmpID, EmpName, EmpSalary
 		FROM    dbo.TestIsolationLevels 
+		WHERE   EmpID = 2900		
+
+		UPDATE  dbo.TestIsolationLevels 
+		SET     EmpSalary = 8768
 		WHERE   EmpID = 2900
-		
-		WAITFOR DELAY '00:00:10'
-	
+	-- 12 sek
 		SELECT  EmpID, EmpName, EmpSalary
 		FROM    dbo.TestIsolationLevels 
 		WHERE   EmpID = 2900
@@ -50,7 +53,6 @@ FROM dbo.TestIsolationLevels
 		FROM    dbo.TestIsolationLevels 
 		WHERE   EmpID = 2900
 	COMMIT
-
 	--phantom
 
 	SET TRANSACTION ISOLATION LEVEL REPEATABLE READ
