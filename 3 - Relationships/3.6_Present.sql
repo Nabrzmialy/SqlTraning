@@ -7,7 +7,7 @@ SELECT * FROM [3.6].Country
 
 -- @@ROWCOUNT - returns number of affecter rows after last operation:
 INSERT INTO [3.6].[AdultPeople]
-VALUES ('Alina', 'Wiejska', '1923-07-02 19:29:40.000', '23070261134', 1, GETDATE())	
+VALUES ('Alina', 'Wiejska', '1923-07-02 19:29:40.000', '23070261134', 1, GETDATE(), 1)	
 SELECT @@ROWCOUNT -- returns 1
 
 UPDATE [3.6].[AdultPeople] set [Name] = 'Lalalal' where PersonId = -1
