@@ -3,6 +3,13 @@ GO
 
 -- Correct table declarations:
 -- a) Add missing constraints
+-- b) Remember that people added to AdultPeople are alive people
+-- c) When validating [IdentityNumber] just focus on first 6 characters regarding date - month and day
+-- d) Only one person can live at 1 address
+-- e) ISO should be written using only uppercase letters like 'PL', 'FR'
+-- f) Do not validate that Country can have only 1 capital city - we gonna do it later
+-- g) ***Additional*** You can add check if data from identity number is aligned with date of birth
+
 SELECT SUBSTRING('92022623435', 5, 2) + '-' + SUBSTRING('92022623435', 3, 2)  + '-' + SUBSTRING('92022623435', 1, 2)
 select (TRY_CONVERT(DateTime, '26-02-50', 5))
 select TRY_CONVERT(DateTime, '34-02-50', 5) 
