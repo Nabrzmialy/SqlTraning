@@ -28,10 +28,10 @@ FROM Production.Product
 
 ------------------------------------ Get unique results------------------------------------------------
 SELECT Color FROM Production.Product
-SELECT distinct Color FROM Production.Product
+SELECT DISTINCT Color FROM Production.Product
 
 ------------------------------------ Filtering - WHERE ------------------------------------------------
-SELECT *
+SELECT ListPrice,*
 FROM Production.Product
 WHERE ListPrice > 1000 
 

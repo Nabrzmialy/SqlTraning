@@ -72,7 +72,7 @@ select [Current LSN], [Operation],
 	[Lock Information],
 	[Num Elements], [RowLog Contents 0], [RowLog Contents 1], [RowLog Contents 2], [Log Record]
 from fn_dblog(null, null)
-where [Transaction ID]='0000:00000411'
+where [Transaction ID]='0000:000007ed'
 
 ------------------ 3 END ------------------
 
@@ -93,7 +93,7 @@ select [Current LSN], [Operation],
 	[Lock Information],
 	[Num Elements], [RowLog Contents 0], [RowLog Contents 1], [RowLog Contents 2], [Log Record]
 from fn_dblog(null, null)
-where [Transaction ID]='0000:00000412'
+where [Transaction ID]='0000:000007ee'
 ------------------ 4 END ------------------
 
 

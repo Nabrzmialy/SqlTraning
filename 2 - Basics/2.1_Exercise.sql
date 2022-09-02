@@ -5,7 +5,7 @@ EXEC [2.1.A_Solution]
 -- and 4th letter can't be "R" - for example BK-R... - is not expected product number
 EXEC [2.1.B_Solution]
 -- 2.1.C -- Find all products with ProductNumber starting:
--- "FK-(letter from A to Z)(digit from 0 to 9)(digit from 0 to 9)(letter from A to Z)-(number 3)(any char)"
+-- "FR-(letter from A to Z)(digit from 0 to 9)(digit from 0 to 9)(letter from A to Z)-(number 3)(any char)"
 EXEC [2.1.C_Solution]
 -- 2.1.D -- Find all products having "LN" anywhere OR color of product is red.
 EXEC [2.1.D_Solution]
