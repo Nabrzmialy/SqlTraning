@@ -79,8 +79,11 @@ VALUES (4, 'Berlin')
 
 
 --5. -- show drop order
-DROP TABLE dbo.Country
 DROP TABLE dbo.CapitalCity
+GO
+DROP TABLE dbo.Country
+GO
+
 
 
 
