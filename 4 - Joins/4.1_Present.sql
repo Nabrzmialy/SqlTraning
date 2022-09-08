@@ -1,5 +1,4 @@
 ﻿-- Simple selects
-
 SELECT * FROM Purchasing.ShipMethod
 SELECT * FROM Sales.SalesOrderHeader
 
@@ -53,6 +52,12 @@ WHERE EXISTS (SELECT 1
  WHERE soh.ShipMethodID = sm.ShipMethodID
  );
 
+ SELECT 
+	distinct sm.*
+ FROM Purchasing.ShipMethod sm
+inner join Sales.SalesOrderHeader soh ON soh.ShipMethodID = sm.ShipMethodID
+
+
  -- ANTI SEMI JOIN
  SELECT 
 	sm.*
@@ -62,6 +67,11 @@ WHERE NOT EXISTS (SELECT 1
  WHERE soh.ShipMethodID = sm.ShipMethodID
  );
 
+  SELECT 
+	distinct sm.*
+ FROM Purchasing.ShipMethod sm
+LEFT join Sales.SalesOrderHeader soh ON soh.ShipMethodID = sm.ShipMethodID
+where soh.ShipMethodID is null 
 
  -- only in first table not in...
   SELECT 
@@ -90,6 +100,6 @@ where soh.ShipMethodID is null
 
 
 
-select * from  Sales.SalesOrderDetail
+SELECT * from  Sales.SalesOrderDetail
 SELECT * FROM Sales.Customer
 SELECT * FROM Purchasing.ShipMethod

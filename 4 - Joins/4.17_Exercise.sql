@@ -3,6 +3,10 @@
 	UPDATE ShipDate (+1 DAY) for all SalesOrderHeader
 	
 	WHERE the ship method name = 'CARGO TRANSPORT 5' 
+	
+	Tables:
+	a) Sales.SalesOrderHeader
+	b) Purchasing.ShipMethod
 
 */
 

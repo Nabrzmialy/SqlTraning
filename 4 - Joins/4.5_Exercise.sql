@@ -1,6 +1,9 @@
 ﻿/* 
-	Show all products with category and subcategory and with name of thumbnail and large photo except
-	from "no_image_available_large" and with rating -
+	Show all products with 
+	a) category and subcategory
+    b) with name of thumbnail
+	c) with large photo name except "no_image_available_large"
+	d) with rating 
 
 	Tables to use: 
 	a) [Production].Product prod 
