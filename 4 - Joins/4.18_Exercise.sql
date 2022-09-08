@@ -4,6 +4,9 @@
 	To products with category = 'Clothing'
 	and Color = 'Black'
 	
+	Production.Product 
+	Production.ProductSubcategory
+	Production.ProductCategory 
 */
 
 
