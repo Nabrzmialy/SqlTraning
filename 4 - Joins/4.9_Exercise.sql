@@ -13,3 +13,5 @@
 
 EXEC [4.9].[Solution]
 
+-- Tip:
+-- soh.TotalDue * cr.AverageRate as [Kwota po konwersji],
