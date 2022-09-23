@@ -17,16 +17,20 @@ CHECK ([OrderPriority] in ('M','H','L','C') )
 
 SET STATISTICS TIME ON
 
-BULK INSERT Sales
+BULK INSERT dbo.Sales
 FROM 'C:\_GIT\SqlFan\8- Performance\1500000 Sales Records.csv'
 WITH (FIRSTROW = 2,
 	KEEPNULLS,
     FIELDTERMINATOR = ',',
 	ROWTERMINATOR='\n' );
 
-SELECT * FROM [dbo].[Sales]
+SELECT COUNT(*) FROM [dbo].[Sales]
 
 -- batch - 300000
+TRUNCATE TABLE dbo.Sales
+
+
+SELECT COUNT(*) FROM [dbo].[Sales]
 
 BULK INSERT Sales
 FROM 'C:\_GIT\SqlFan\8- Performance\1500000 Sales Records.csv'
@@ -43,7 +47,7 @@ FROM 'C:\_GIT\SqlFan\8- Performance\1500000 Sales Records.csv'
 WITH (FIRSTROW = 2,
     FIELDTERMINATOR = ',',
 	ROWTERMINATOR='\n' ,
-	MAXERRORS=2);
+	MAXERRORS=10);
 
 SELECT COUNT(*) AS [NumberofImportedRow] FROM Sales
 
@@ -65,7 +69,7 @@ FROM 'C:\_GIT\SqlFan\8- Performance\1500000 Sales Records.csv'
 WITH (FIRSTROW = 2,
     FIELDTERMINATOR = ',',
 	ROWTERMINATOR='\n' ,
-	MAXERRORS=2,
+	MAXERRORS=10,
 	FIRE_TRIGGERS);
 
 select * from SalesLog
@@ -81,7 +85,7 @@ FROM 'C:\_GIT\SqlFan\8- Performance\1500000 Sales Records.csv'
 WITH (FIRSTROW = 2,
     FIELDTERMINATOR = ',',
 	ROWTERMINATOR='\n' ,
-	MAXERRORS=2,
+	MAXERRORS=10,
 	CHECK_CONSTRAINTS);
 
 
