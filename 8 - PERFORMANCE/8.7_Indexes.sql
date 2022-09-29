@@ -44,9 +44,9 @@ FROM sys.dm_db_database_page_allocations
          OBJECT_ID(N'sales'), null, NULL, 'DETAILED')
 
 DBCC SHOWCONTIG('sales') WITH ALL_LEVELS, TABLERESULTS, NO_INFOMSGS
-
-SELECT (8993 * 8000)
-select (83.317 * 848572)
+--SQL Server, the page size is 8-KB.--
+SELECT (7512 * 8000)
+select (69.317 * 848572)
 
 ALTER TABLE dbo.Sales REBUILD
 
@@ -171,4 +171,4 @@ select h.salesorderid, d.salesorderDetailid from sales.salesorderHeader h
 inner   join sales.salesorderDetail d on h.salesorderID = d.salesOrderId
 OPTION (QUERYTRACEON 8649)
 
-
+-- CREATE more and more indexes on sales table and check bulk insert performance

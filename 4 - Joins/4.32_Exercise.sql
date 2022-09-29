@@ -1,2 +1,2 @@
-﻿-- convert view - SoldProductsByColorPlusTotalsInYears to table value function and compare performance
--- filtering by seller full name
+﻿-- convert query from 4.23 with pivot to table value function
+-- filter by seller full name
