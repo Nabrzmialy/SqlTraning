@@ -26,7 +26,8 @@ from sys.dm_tran_locks
 
   ROLLBACK TRAN
   SELECT idSupplier, nameSupplier, dateCreation, country from supplier where idSupplier= 69
-
+  		
+SELECT * FROM GiveMeSupplierLocks
 
   SELECT
 		L.request_session_id AS SPID, 

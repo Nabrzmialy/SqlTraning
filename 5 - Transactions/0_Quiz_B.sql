@@ -62,6 +62,7 @@ order by idSupplier
 --- QUERY B --
 ------------------- Question no 3 ---------------------
 SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED
+--DIRTY READ ---
 
 select idSupplier, nameSupplier, country
 from dbo.Supplier 
@@ -108,6 +109,7 @@ select idSupplier, nameSupplier, country, idCategory
 from dbo.Supplier WITH (NOLOCK)
 WHERE idSupplier <= 160
 order by idSupplier
+
 
 
 

@@ -11,6 +11,8 @@ BEGIN TRANSACTION
 
 ROLLBACK TRANSACTION
 
+
+
 --- Multiple transactions
 
 -- function that returns number of opened transactions in current connection
@@ -26,7 +28,7 @@ BEGIN TRANSACTION FIRST_ONE
 
 	SELECT 'From Second_One:', FirstName, LastName, MiddleName FROM Person.Person WHERE BusinessEntityID = 69
 	
-	COMMIT TRANSACTION SECOND_ONE
+	--COMMIT TRANSACTION SECOND_ONE
 
 	ROLLBACK TRANSACTION SECOND_ONE
 	
