@@ -16,14 +16,39 @@ DAY			-- Returns the day of a specified date as an integer
 MONTH		-- Returns the month of a specified date as an integer
 YEAR		-- Returns the year of the date as an integer.
 
--- Ex 1.: What is the difference between DATENAME and DATEPART?
--- Ex 2.: SELECT sum of day, month, year of Current GetDate()
+SELECT CURRENT_TIMESTAMP
+SELECT YEAR(GETDATE())
 
+
+-- Ex 1.: What is the difference between DATENAME and DATEPART?
+SELECT DATENAME(yy, GETDATE()) 
+SELECT DATENAME(mm, GETDATE()) 
+SELECT DATENAME(dd, GETDATE()) 
+
+SELECT DATEPART(yy, GETDATE()) 
+SELECT DATEPART(mm, GETDATE()) 
+SELECT DATEPART(dd, GETDATE()) 
+
+
+-- Ex 2.: SELECT sum of day, month, year of Current GetDate()
+SELECT SUM(DAY(GETDATE()) + month(GETDATE()) + year(GETDATE()))
 
 /* Returning a difference between two dates */
 DATEDIFF	-- Returns a difference in date part between two dates
 
+
 -- Ex 3.: In what scale datediff can be returned?
+SELECT DATEDIFF(year,        '2005-12-31 23:59:59.9999999', '2006-01-01 00:00:00.0000000');
+SELECT DATEDIFF(quarter,     '2005-12-31 23:59:59.9999999', '2006-01-01 00:00:00.0000000');
+SELECT DATEDIFF(month,       '2005-12-31 23:59:59.9999999', '2006-01-01 00:00:00.0000000');
+SELECT DATEDIFF(dayofyear,   '2005-12-31 23:59:59.9999999', '2006-01-01 00:00:00.0000000');
+SELECT DATEDIFF(day,         '2005-12-31 23:59:59.9999999', '2006-01-01 00:00:00.0000000');
+SELECT DATEDIFF(week,        '2005-12-31 23:59:59.9999999', '2006-01-01 00:00:00.0000000');
+SELECT DATEDIFF(hour,        '2005-12-31 23:59:59.9999999', '2006-01-01 00:00:00.0000000');
+SELECT DATEDIFF(minute,      '2005-12-31 23:59:59.9999999', '2006-01-01 00:00:00.0000000');
+SELECT DATEDIFF(second,      '2005-12-31 23:59:59.9999999', '2006-01-01 00:00:00.0000000');
+SELECT DATEDIFF(millisecond, '2005-12-31 23:59:59.9999999', '2006-01-01 00:00:00.0000000');
+SELECT DATEDIFF(microsecond, '2005-12-31 23:59:59.9999999', '2006-01-01 00:00:00.0000000');
 
 /* Modifying dates */
 DATEADD				-- Adds a value to a date part of a date and return the new date value.
